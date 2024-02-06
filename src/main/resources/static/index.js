@@ -58,7 +58,7 @@ window.addResult = function() {
         state.results.push(new ResultRow(state.guess(), state.feedback))
         state.clearGuess()
         state.clearFeedback()
-        updateResults()
+        update()
     } else {
         console.log("Guess, " + state.guess() + " must be 5 letters.")
     }
@@ -72,12 +72,12 @@ window.removeResult = function(index) {
         }
     }
     state.results = newResults
-    updateResults()
+    update()
 }
 
 window.clearResults = function() {
     state.results = []
-    updateResults()
+    update()
 }
 
 function clearSuggestions() {
@@ -109,27 +109,16 @@ function updateResults() {
         })
 }
 
-async function updateSuggestions() {
+function updateSuggestions() {
     clearSuggestions()
-    suggestions = await fetchSuggestions();
-    suggestions.split(",").forEach(insertSuggestion);
+    fetch('/suggestions')
+        .then((response) => response.text())
+        .then((suggestions) => {
+            suggestions.split(",").forEach(insertSuggestion);
+        })
 }
 
 function update() {
     updateResults()
     updateSuggestions()
-}
-
-async function fetchSuggestions() {
-    try {
-      const response = await fetch("");
-      if (response.ok) {
-        const text = await response.text()
-        return text
-      } else {
-        throw new Error(response.status);
-      }
-    } catch (error) {
-      console.error('Fetch', error);
-    }
 }

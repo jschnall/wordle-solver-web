@@ -9,7 +9,7 @@ import io.ktor.server.routing.*
 
 fun Application.configureApiRouting() {
     routing {
-        post("/suggestions") {
+        get("/suggestions") {
 //            val guesses = call.receive<List<Guess>>()
 //            val solver = Solver()
 //
@@ -18,7 +18,7 @@ fun Application.configureApiRouting() {
 //            }
 //
 //            call.respond(solver.guess().map { Suggestion(it.key, it.value.first, it.value.second) })
-            call.respondText ("first,second,third,fourth,fifth", status = HttpStatusCode.OK)
+            call.respondText ("blah,second,third,fourth,fifth", status = HttpStatusCode.OK)
         }
     }
 }
