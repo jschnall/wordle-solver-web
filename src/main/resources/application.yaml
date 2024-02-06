@@ -1,0 +1,12 @@
+ktor:
+  development: true
+  deployment:
+    host: "localhost"
+    port: 8080
+    watch:
+      - classes
+      - resources
+  application:
+    modules:
+      - dev.wary.wordle.api.ModuleKt.apiModule
+      - dev.wary.wordle.ui.ModuleKt.uiModule

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="google" content="notranslate">
+        <title>Wordle Solver</title>
+        <link href="https://cdn.jsdelivr.net/npm/beercss@3.4.13/dist/cdn/beer.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="static/index.css">
+        <script type="module" src="https://cdn.jsdelivr.net/npm/beercss@3.4.13/dist/cdn/beer.min.js"></script>
+        <script type="module" src="static/index.js"></script>
+    </head>
+    <body class="theme-dark">
+        <main class="responsive margin">
+            <!-- Guess Entry -->
+            <div class="field label border no-margin">
+                <input id="guess" type="text" maxlength="5" size="5" autocapitalize="characters">
+                <label for="guess">Guess</label>
+            </div>
+            <div class="space"></div>
+            <p>Feedback</p>
+            <button id="feedback0" class="square no-margin wordle-bg0" onclick="toggleFeedback(0)"></button>
+            <button id="feedback1" class="square tiny-margin wordle-bg0" onclick="toggleFeedback(1)"></button>
+            <button id="feedback2" class="square no-margin wordle-bg0" onclick="toggleFeedback(2)"></button>
+            <button id="feedback3" class="square tiny-margin wordle-bg0" onclick="toggleFeedback(3)"></button>
+            <button id="feedback4" class="square no-margin wordle-bg0" onclick="toggleFeedback(4)"></button>
+            <div class="space"></div>
+            <button id="add_button" class="no-margin" onclick="addResult()">
+                <i>add</i>
+                <span>Add Result</span>
+            </button>
+
+            <div class="space"></div>
+            <div class="divider"></div>
+            <div class="space"></div>
+
+            <!-- Result List -->
+            <div id="results">
+            </div>
+
+            <div class="space"></div>
+            <button id="reset_button" class="no-margin">
+                <i>refresh</i>
+                <span>Reset Results</span>
+            </button>
+
+            <div class="space"></div>
+            <div class="divider"></div>
+            <div class="space"></div>
+
+            <!-- Top Suggestions List -->
+            <h6>Top Suggestions</h6>
+            <div class="space"></div>
+            <div id="suggestions" class="page active">
+                <p id="suggestion0">First</p>
+                <p id="suggestion1">Second</p>
+                <p id="suggestion2">Third</p>
+                <p id="suggestion3">Fourth</p>
+                <p id="suggestion4">Fifth</p>
+            </div>
+        </main>
+    </body>
+</html>

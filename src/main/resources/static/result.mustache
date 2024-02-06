@@ -1,0 +1,6 @@
+<div id="result_row{{id}}" class="tiny-margin bottom-margin page right active">
+    {{#results}}
+    <button class="square no-margin small wordle-bg{{score}}"><p class="white-text">{{letter}}</p></button>
+    {{/results}}
+    <button id="remove{{id}}" class="circle small transparent" onclick="removeResult({{id}})"><i>close</i></button>
+</div>
