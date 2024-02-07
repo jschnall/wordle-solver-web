@@ -7,11 +7,11 @@
         <meta name="google" content="notranslate">
         <title>Wordle Solver</title>
         <link href="https://cdn.jsdelivr.net/npm/beercss@3.4.13/dist/cdn/beer.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="static/index.css">
+        <link rel="stylesheet" href="wordlesolver/index.css">
         <script type="module" src="https://cdn.jsdelivr.net/npm/beercss@3.4.13/dist/cdn/beer.min.js"></script>
-        <script type="module" src="static/index.js"></script>
+        <script type="module" src="wordlesolver/index.js"></script>
     </head>
-    <body class="theme-dark">
+    <body class="theme-dark" onload="update()">
         <main class="responsive margin">
             <!-- Guess Entry -->
             <div class="field label border no-margin">
@@ -51,13 +51,14 @@
 
             <!-- Top Suggestions List -->
             <h6>Top Suggestions</h6>
+            <p id="remaining" class="small-text italic"></p>
             <div class="space"></div>
             <div id="suggestions" class="page active">
-                <p id="suggestion0">First</p>
-                <p id="suggestion1">Second</p>
-                <p id="suggestion2">Third</p>
-                <p id="suggestion3">Fourth</p>
-                <p id="suggestion4">Fifth</p>
+                <p id="suggestion0" class="upper"></p>
+                <p id="suggestion1" class="upper"></p>
+                <p id="suggestion2" class="upper"></p>
+                <p id="suggestion3" class="upper"></p>
+                <p id="suggestion4" class="upper"></p>
             </div>
         </main>
     </body>

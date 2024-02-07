@@ -96,8 +96,8 @@ function clearSuggestions() {
 }
 
 // Insert suggestion at index
-function insertSuggestion(item, index) {
-    document.getElementById("suggestion" + index).innerHTML = item;
+function insertSuggestion(suggestion, index) {
+    document.getElementById("suggestion" + index).innerHTML = suggestion.word;
 }
 
 function validateGuess() {
@@ -109,7 +109,7 @@ function resultToRow(result) {
 }
 
 function updateResults() {
-    fetch('static/result.mustache')
+    fetch('wordlesolver/result.mustache')
         .then((response) => response.text())
         .then((template) => {
             const htmlBlocks = []
@@ -124,23 +124,23 @@ function updateResults() {
 
 function updateSuggestions() {
     clearSuggestions()
-    console.log(JSON.stringify(state.results))
-    fetch('/suggestions', {
+    fetch('wordlesolver/api/suggestions', {
         method: 'POST',
         headers: {
-            'Accept': 'text/html',
+            'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(state.results),
         cache: 'default'
     })
-    .then((response) => response.text())
-    .then((suggestions) => {
-        suggestions.split(",").forEach(insertSuggestion);
+    .then((response) => response.json())
+    .then((data) => {
+        data.suggestions.forEach(insertSuggestion);
+        document.getElementById("remaining").innerHTML = data.remainingWords + " words remain";
     })
 }
 
-function update() {
+window.update = function() {
     updateResults()
     updateSuggestions()
 }
