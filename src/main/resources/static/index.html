@@ -12,6 +12,15 @@
         <script type="module" src="wordlesolver/index.js"></script>
     </head>
     <body class="theme-dark" onload="update()">
+        <header class="secondary-container">
+            <nav>
+                <button class="circle transparent" onclick="history.back()">
+                    <i>arrow_back</i>
+                </button>
+                <h5 class="max">Wordle Solver</h5>
+            </nav>
+        </header>
+
         <main class="responsive margin">
             <!-- Guess Entry -->
             <div class="field label border no-margin">
@@ -62,5 +71,10 @@
                 <p id="suggestion4" class="upper"></p>
             </div>
         </main>
+        <footer class="transparent">
+            <div class="space"></div>
+            <div class="margin" style="text-align:right;">&#169;2024 Joel Schnall</div>
+            <div class="space"></div>
+        </footer>
     </body>
 </html>
