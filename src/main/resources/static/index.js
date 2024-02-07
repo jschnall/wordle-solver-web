@@ -1,11 +1,20 @@
 import mustache from "https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.2.0/mustache.min.js"
 
+class Result {
+    word;
+    score;
+    constructor(word, score) {
+        this.word = word
+        this.score = score
+    }
+}
+
 class ResultRow {
     items;
     constructor(word, scores) {
         this.items = []
         const upperWord = word.toUpperCase();
-        for (let i = 0; i < word.length; i++) {
+        for (let i = 0; i < upperWord.length; i++) {
             this.items.push(new ResultItem(upperWord[i], scores[i]));
         }
     }
@@ -55,7 +64,7 @@ window.toggleFeedback = function(index) {
 
 window.addResult = function() {
     if (validateGuess()) {
-        state.results.push(new ResultRow(state.guess(), state.feedback))
+        state.results.push(new Result(state.guess(), state.feedback.join("")))
         state.clearGuess()
         state.clearFeedback()
         update()
@@ -95,14 +104,18 @@ function validateGuess() {
     return state.guess().length == 5
 }
 
+function resultToRow(result) {
+    return new ResultRow(result.word, result.score)
+}
+
 function updateResults() {
     fetch('static/result.mustache')
         .then((response) => response.text())
         .then((template) => {
             const htmlBlocks = []
-            for (let i = 0; i < state.results.length; i++) {
-                const row = state.results[i]
-                console.log(row)
+            const rows = state.results.map(resultToRow)
+            for (let i = 0; i < rows.length; i++) {
+                const row = rows[i]
                 htmlBlocks.push(mustache.render(template, { "id": i, "results": row.items }))
             }
             document.getElementById("results").innerHTML = htmlBlocks.join("")
@@ -111,11 +124,20 @@ function updateResults() {
 
 function updateSuggestions() {
     clearSuggestions()
-    fetch('/suggestions')
-        .then((response) => response.text())
-        .then((suggestions) => {
-            suggestions.split(",").forEach(insertSuggestion);
-        })
+    console.log(JSON.stringify(state.results))
+    fetch('/suggestions', {
+        method: 'POST',
+        headers: {
+            'Accept': 'text/html',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(state.results),
+        cache: 'default'
+    })
+    .then((response) => response.text())
+    .then((suggestions) => {
+        suggestions.split(",").forEach(insertSuggestion);
+    })
 }
 
 function update() {

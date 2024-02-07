@@ -19,6 +19,7 @@ repositories {
 }
 
 dependencies {
+    implementation(files("libs/wordlesolver.jar"))
     implementation("io.ktor:ktor-server-core-jvm:2.3.8")
     implementation("io.ktor:ktor-server-netty-jvm:2.3.8")
     implementation("io.ktor:ktor-server-config-yaml:2.3.8")
