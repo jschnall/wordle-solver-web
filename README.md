@@ -3,4 +3,4 @@
 
 Try it [here](https://www.schnall.net/wordlesolver).
 
-![Screenshot](Screenshot.png?raw=true)
+![screenshot](screenshot.png?raw=true)
