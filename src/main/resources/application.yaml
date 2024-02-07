@@ -1,8 +1,8 @@
 ktor:
-  development: true
+  development: false
   deployment:
     host: "localhost"
-    port: 8080
+    port: 8383
     watch:
       - classes
       - resources

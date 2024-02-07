@@ -89,10 +89,13 @@ window.clearResults = function() {
     update()
 }
 
-function clearSuggestions() {
+function onLoadSuggestions() {
+    // Clear suggestions
     for (let i = 0; i < 5; i++) {
         document.getElementById("suggestion" + i).innerHTML = "";
     }
+    // Show progress indicator
+    document.getElementById("progress").classList.add("active");
 }
 
 // Insert suggestion at index
@@ -123,9 +126,9 @@ function updateResults() {
 }
 
 function updateSuggestions() {
-    clearSuggestions()
+    onLoadSuggestions()
     fetch('wordlesolver/api/suggestions', {
-        method: 'POST',
+        method: 'post',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
@@ -135,6 +138,8 @@ function updateSuggestions() {
     })
     .then((response) => response.json())
     .then((data) => {
+        // Hide progress indicator
+        document.getElementById("progress").classList.remove("active");
         data.suggestions.forEach(insertSuggestion);
         document.getElementById("remaining").innerHTML = data.remainingWords + " words remain";
     })

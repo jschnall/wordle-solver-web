@@ -35,5 +35,10 @@ tasks.test {
     useJUnitPlatform()
 }
 kotlin {
-    jvmToolchain(21)
+    jvmToolchain(11)
+}
+ktor {
+    fatJar {
+        archiveFileName.set("wordlesolver_web.jar")
+    }
 }
