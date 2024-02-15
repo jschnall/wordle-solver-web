@@ -13,6 +13,17 @@
     </head>
     <body class="theme-dark" onload="update()">
         <main class="responsive margin">
+
+            <nav class="no-space center-align ">
+                <button id="5-letter" class="border left-round fill" onclick="setWordLength(5)">
+                    <span>5 Letters</span>
+                </button>
+                <button id="6-letter" class="border right-round" onclick="setWordLength(6)">
+                    <span>6 Letters</span>
+                </button>
+            </nav>
+            <div class="large-space"></div>
+
             <!-- Guess Entry -->
             <div class="field label border no-margin">
                 <input id="guess" type="text" maxlength="5" size="5" autocapitalize="characters">
@@ -20,11 +31,14 @@
             </div>
             <div class="space"></div>
             <p>Feedback</p>
-            <button id="feedback0" class="square no-margin wordle-bg0" onclick="toggleFeedback(0)"></button>
-            <button id="feedback1" class="square tiny-margin wordle-bg0" onclick="toggleFeedback(1)"></button>
-            <button id="feedback2" class="square no-margin wordle-bg0" onclick="toggleFeedback(2)"></button>
-            <button id="feedback3" class="square tiny-margin wordle-bg0" onclick="toggleFeedback(3)"></button>
-            <button id="feedback4" class="square no-margin wordle-bg0" onclick="toggleFeedback(4)"></button>
+            <div class="row scroll no-space">
+                <button id="feedback0" class="square no-margin wordle-bg0 white-text" onclick="toggleFeedback(0)"></button>
+                <button id="feedback1" class="square tiny-margin wordle-bg0 white-text" onclick="toggleFeedback(1)"></button>
+                <button id="feedback2" class="square no-margin wordle-bg0 white-text" onclick="toggleFeedback(2)"></button>
+                <button id="feedback3" class="square tiny-margin wordle-bg0 white-text" onclick="toggleFeedback(3)"></button>
+                <button id="feedback4" class="square no-margin wordle-bg0 white-text" onclick="toggleFeedback(4)"></button>
+                <button id="feedback5" class="square tiny-margin wordle-bg0 white-text" style="display:none;" onclick="toggleFeedback(5)"></button>
+            </div>
             <div class="space"></div>
             <button id="add_button" class="no-margin" onclick="addResult()">
                 <i>add</i>

@@ -33,6 +33,7 @@ const state = {
     suggestions: [],
     feedback: [0, 0, 0, 0, 0],
     results: [],
+    wordLength: 5,
 
     guess: function() {
         return document.getElementById("guess").value
@@ -48,6 +49,7 @@ const state = {
             document.getElementById("feedback" + i).classList.add("wordle-bg0")
             document.getElementById("feedback" + i).classList.remove("wordle-bg1")
             document.getElementById("feedback" + i).classList.remove("wordle-bg2")
+            document.getElementById("feedback" + i).textContent = ""
         }
     }
 };
@@ -69,7 +71,7 @@ window.addResult = function() {
         state.clearFeedback()
         update()
     } else {
-        console.log("Guess, " + state.guess() + " must be 5 letters.")
+        console.log("Guess, " + state.guess() + " must be " + state.wordLength + " letters.")
     }
 }
 
@@ -104,7 +106,7 @@ function insertSuggestion(suggestion, index) {
 }
 
 function validateGuess() {
-    return state.guess().length == 5
+    return state.guess().length == state.wordLength
 }
 
 function resultToRow(result) {
@@ -127,13 +129,19 @@ function updateResults() {
 
 function updateSuggestions() {
     onLoadSuggestions()
+
+    const body = {
+        guesses: state.results,
+        wordLength: state.wordLength
+    };
+
     fetch('api/suggestions', {
         method: 'post',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(state.results),
+        body: JSON.stringify(body),
         cache: 'default'
     })
     .then((response) => response.json())
@@ -146,6 +154,41 @@ function updateSuggestions() {
 }
 
 window.update = function() {
-    updateResults()
-    updateSuggestions()
+    updateResults();
+    updateSuggestions();
 }
+
+window.setWordLength = function(wordLength) {
+    state.wordLength = wordLength;
+    document.getElementById("guess").maxLength = wordLength;
+    document.getElementById("guess").size = wordLength;
+
+    if (wordLength == 5) {
+        state.feedback = [0, 0, 0, 0, 0]
+        document.getElementById("5-letter").classList.add("fill");
+        document.getElementById("6-letter").classList.remove("fill");
+        document.getElementById("feedback5").style.display = "none";
+    } else {
+        state.feedback = [0, 0, 0, 0, 0, 0]
+        document.getElementById("5-letter").classList.remove("fill");
+        document.getElementById("6-letter").classList.add("fill");
+        document.getElementById("feedback5").style.display = "block";
+    }
+
+    state.clearGuess()
+    state.clearFeedback()
+    window.clearResults()
+}
+
+function updateFeedback(event) {
+    const str = document.getElementById("guess").value.toUpperCase();
+    for (let i = 0; i < str.length; i++) {
+        document.getElementById("feedback" + i).textContent = str[i]
+    }
+    for (let i = str.length; i < state.wordLength; i++) {
+        document.getElementById("feedback" + i).textContent = ""
+    }
+}
+
+document.getElementById("guess").addEventListener("input", updateFeedback);
+

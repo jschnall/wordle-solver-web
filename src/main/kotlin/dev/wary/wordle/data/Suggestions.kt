@@ -9,4 +9,6 @@ data class Guess(val word: String, val score: String)
 data class Suggestion(val word: String, val letterFrequencyScore: Double, val letterFrequencyAtIndexScore: Double)
 
 @Serializable
+data class SuggestionsBody(@Serializable val guesses: List<Guess>, val wordLength: Int)
+@Serializable
 data class SuggestionsResult(@Serializable val suggestions: List<Suggestion>, val remainingWords: Int)
