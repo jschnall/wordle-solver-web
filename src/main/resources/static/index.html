@@ -7,20 +7,11 @@
         <meta name="google" content="notranslate">
         <title>Wordle Solver</title>
         <link href="https://cdn.jsdelivr.net/npm/beercss@3.4.13/dist/cdn/beer.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="wordlesolver/index.css">
+        <link rel="stylesheet" href="css/index.css">
         <script type="module" src="https://cdn.jsdelivr.net/npm/beercss@3.4.13/dist/cdn/beer.min.js"></script>
-        <script type="module" src="wordlesolver/index.js"></script>
+        <script type="module" src="js/index.js"></script>
     </head>
     <body class="theme-dark" onload="update()">
-        <header class="secondary-container">
-            <nav>
-                <button class="circle transparent" onclick="history.back()">
-                    <i>arrow_back</i>
-                </button>
-                <h5 class="max">Wordle Solver</h5>
-            </nav>
-        </header>
-
         <main class="responsive margin">
             <!-- Guess Entry -->
             <div class="field label border no-margin">
@@ -49,7 +40,7 @@
             </div>
 
             <div class="space"></div>
-            <button id="reset_button" class="no-margin" onclick="clearResults()">
+            <button id="reset-button" class="no-margin" onclick="clearResults()">
                 <i>refresh</i>
                 <span>Reset Results</span>
             </button>

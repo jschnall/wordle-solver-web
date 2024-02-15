@@ -112,7 +112,7 @@ function resultToRow(result) {
 }
 
 function updateResults() {
-    fetch('wordlesolver/result.mustache')
+    fetch('result.mustache')
         .then((response) => response.text())
         .then((template) => {
             const htmlBlocks = []
@@ -127,7 +127,7 @@ function updateResults() {
 
 function updateSuggestions() {
     onLoadSuggestions()
-    fetch('wordlesolver/api/suggestions', {
+    fetch('api/suggestions', {
         method: 'post',
         headers: {
             'Accept': 'application/json',

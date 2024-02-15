@@ -1,7 +1,7 @@
 :root {
-  --wordle-green: #618c55;
-  --wordle-yellow: #b1a04c;
-  --wordle-grey: #3a3a3c;
+  --wordle-green:#618c55;
+  --wordle-yellow:#b1a04c;
+  --wordle-grey:#3a3a3c;
 }
 
 .theme-dark {
@@ -83,17 +83,17 @@
 }
 
 .wordle-bg2 {
-    background-color: var(--wordle-green);
+    background-color:var(--wordle-green);
 }
 
 .wordle-bg1 {
-    background-color: var(--wordle-yellow);
+    background-color:var(--wordle-yellow);
 }
 
 .wordle-bg0 {
-    background-color: var(--wordle-grey)
+    background-color:var(--wordle-grey)
 }
 
 #guess {
-    text-transform: uppercase;
+    text-transform:uppercase;
 }

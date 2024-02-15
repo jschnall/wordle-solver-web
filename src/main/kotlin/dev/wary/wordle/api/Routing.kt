@@ -11,7 +11,7 @@ import io.ktor.server.routing.*
 
 fun Application.configureApiRouting() {
     routing {
-        post("/wordlesolver/api/suggestions") {
+        post("/api/suggestions") {
             val guesses = call.receive<List<Guess>>()
             val solver = Solver()
 

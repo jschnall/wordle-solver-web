@@ -6,7 +6,7 @@ import io.ktor.server.routing.*
 
 fun Application.configureUiRouting() {
     routing {
-            staticResources("/wordlesolver", "static") {
+            staticResources("/", "static") {
                 preCompressed(CompressedFileType.BROTLI, CompressedFileType.GZIP)
             }
 // TODO Add option to use 6 letter word dictionary
