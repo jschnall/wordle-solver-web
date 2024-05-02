@@ -6,7 +6,7 @@ import io.ktor.server.routing.*
 
 fun Application.configureUiRouting() {
     routing {
-        staticResources("/", "static") {
+        staticResources("/", "static", index = "index.html") {
             preCompressed(CompressedFileType.BROTLI, CompressedFileType.GZIP)
         }
     }
